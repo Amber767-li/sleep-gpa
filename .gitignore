@@ -1,0 +1,48 @@
+# macOS and Windows
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Quarto
+.quarto/
+_site/
+/index.html
+/index_files/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+*.egg-info/
+
+# R
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+*_cache/
+*_files/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editors and temporary files
+.vscode/
+.idea/
+*~
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# Local environment settings
+.env
+.env.*
+!.env.example
