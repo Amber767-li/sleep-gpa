@@ -314,7 +314,7 @@ window.Quarto = {
 <h1>Data Analysis</h1>
 <section id="descriptive-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="descriptive-analysis">Descriptive Analysis</h2>
-<div id="1141781d" class="cell" data-execution_count="1">
+<div id="6919929f" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -463,7 +463,7 @@ window.Quarto = {
 <p>The analytic sample included 253 students with complete data on GPA, weekday bedtime, and weekday sleep duration. Mean GPA was 3.24 (SD = 0.40). Mean weekday bedtime was approximately 12:51 a.m. (coded M = 24.85, SD = 1.03 hours). Mean weekday sleep duration was 7.87 hours (SD = 1.17), ranging from 3.00 to 10.97 hours.</p>
 <p>Conclusion：</p>
 <p>学生平均在午夜后就寝，平均工作日睡眠时长接近 8 小时；就寝时间和睡眠时长存在一定个体差异。</p>
-<div id="c4862bf6" class="cell" data-execution_count="2">
+<div id="9809e75a" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
@@ -521,7 +521,7 @@ window.Quarto = {
 </section>
 <section id="research-q-1-is-average-weekday-bedtime-associated-with-gpa" class="level2">
 <h2 class="anchored" data-anchor-id="research-q-1-is-average-weekday-bedtime-associated-with-gpa">1.1 Research Q 1: Is average weekday bedtime associated with GPA?</h2>
-<div id="22dbd240" class="cell" data-execution_count="3">
+<div id="7e7faf14" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr</span>
@@ -546,7 +546,7 @@ p-value = 0.040</code></pre>
 <p>English report</p>
 <p>A Pearson correlation indicated a weak negative association between weekday bedtime and GPA, r(251) = −.130, p = .040. Students with later bedtimes tended to report slightly lower GPAs, although the magnitude of the association was small.</p>
 <p>结论： 就寝时间与 GPA 的负相关达到 .05 显著性水平，但效应较小，不能据此推断晚睡导致 GPA 降低。</p>
-<div id="4acf1885" class="cell" data-execution_count="4">
+<div id="440e1c4f" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> smf.ols(<span class="st">"GPA ~ WeekdayBed"</span>, data<span class="op">=</span>d).fit()</span>
@@ -570,7 +570,7 @@ Dep. Variable:                    GPA   R-squared:                       0.017
 Model:                            OLS   Adj. R-squared:                  0.013
 Method:                 Least Squares   F-statistic:                     4.281
 Date:                Wed, 18 Nov 2026   Prob (F-statistic):             0.0396
-Time:                        00:20:05   Log-Likelihood:                -127.22
+Time:                        00:23:12   Log-Likelihood:                -127.22
 No. Observations:                 253   AIC:                             258.4
 Df Residuals:                     251   BIC:                             265.5
 Df Model:                           1                                         
@@ -603,7 +603,7 @@ Notes:
 </section>
 <section id="research-q2-does-a-quadratic-term-improve-the-description-of-the-bedtimegpa-association-beyond-a-linear-model" class="level2">
 <h2 class="anchored" data-anchor-id="research-q2-does-a-quadratic-term-improve-the-description-of-the-bedtimegpa-association-beyond-a-linear-model">1.2 Research Q2: Does a quadratic term improve the description of the bedtime–GPA association beyond a linear model?</h2>
-<div id="9d6924a1" class="cell" data-execution_count="5">
+<div id="22880f42" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用普通 OLS 标准误</span></span>
@@ -669,7 +669,7 @@ Notes:
 <p>English report</p>
 <p>A simple linear regression examined the association between weekday bedtime and GPA. The overall model was statistically significant, F(1, 251) = 4.28, p = .040, R² = .017. Weekday bedtime negatively predicted GPA, b = −0.051, SE = 0.024, t(251) = −2.07, p = .040, 95% CI [−0.099, −0.002]. Each one-hour later bedtime was associated with an approximately 0.051-point lower predicted GPA.</p>
 <p>结论： 普通 OLS 推断下，就寝时间与 GPA 的负关联显著，但模型只解释约 1.7% 的 GPA 方差，解释能力有限。</p>
-<div id="6016bc2c" class="cell" data-execution_count="6">
+<div id="e2ab4fd0" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 0 = 午夜；-1 = 晚上 11 点；1 = 凌晨 1 点</span></span>
@@ -709,7 +709,7 @@ Dep. Variable:                    GPA   R-squared:                       0.018
 Model:                            OLS   Adj. R-squared:                  0.010
 Method:                 Least Squares   F-statistic:                     2.269
 Date:                Wed, 18 Nov 2026   Prob (F-statistic):              0.106
-Time:                        00:20:05   Log-Likelihood:                -127.09
+Time:                        00:23:12   Log-Likelihood:                -127.09
 No. Observations:                 253   AIC:                             260.2
 Df Residuals:                     250   BIC:                             270.8
 Df Model:                           2                                         
@@ -788,7 +788,7 @@ Notes:
 <p>English report</p>
 <p>To examine a possible quadratic association, weekday bedtime was centered at midnight, and both the centered term and its square were included in the regression model. The overall quadratic model was not statistically significant, F(2, 250) = 2.27, p = .106, R² = .018. The quadratic term was not significant, b = −0.0075, SE = 0.0144, t(250) = −0.52, p = .604, 95% CI [−0.0359, 0.0209]. Adding the quadratic term did not significantly improve model fit relative to the linear model, ΔF(1, 250) = 0.27, p = .604, ΔR² = .001.</p>
 <p>结论： 数据未提供支持二次关系的充分证据，也不足以确定一个使预测 GPA 最高的“最佳就寝时间”。</p>
-<div id="ed3ea44c" class="cell" data-execution_count="7">
+<div id="42966386" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">5</span>))</span>
@@ -820,7 +820,7 @@ Notes:
 <p>English report</p>
 <p>The residuals-versus-fitted plot showed no pronounced systematic curvature, and the LOWESS smoother remained close to zero across most of the fitted range. No clear funnel-shaped pattern was apparent, suggesting no prominent visual violations of linearity or homoscedasticity. However, several observations had relatively large negative residuals.</p>
 <p>结论： 残差图总体支持将线性模型作为初步分析，但图形检查不能证明方差完全相等，也不能排除其他模型问题。</p>
-<div id="017d9b1d" class="cell" data-execution_count="8">
+<div id="3760610a" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Q–Q 图：检查残差正态性</span></span>
@@ -832,7 +832,7 @@ Notes:
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Normal Q–Q Plot"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>Text(0.5, 1.0, 'Normal Q–Q Plot')</code></pre>
 </div>
 </div>
@@ -841,7 +841,7 @@ Notes:
 <p>English report</p>
 <p>The normal Q–Q plot indicated that residuals approximately followed the normal reference line in the central portion of the distribution. Deviations were evident in the tails, particularly in the lower tail, where several large negative residuals occurred. These findings suggest approximate normality with some negative skewness and tail departures.</p>
 <p>结论： 不宜写“残差完全服从正态分布”；更准确的说法是“中央部分近似正态，但尾部存在偏离”。</p>
-<div id="463084f2" class="cell" data-execution_count="9">
+<div id="a587495d" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 影响气泡图：检查杠杆值、残差和影响力</span></span>
@@ -887,7 +887,7 @@ Notes:
 </section>
 <section id="research-q3-does-the-bedtimegpa-association-change-after-accounting-for-weekday-sleep-duration" class="level2">
 <h2 class="anchored" data-anchor-id="research-q3-does-the-bedtimegpa-association-change-after-accounting-for-weekday-sleep-duration">1.3 Research Q3: Does the bedtime–GPA association change after accounting for weekday sleep duration?</h2>
-<div id="2e44139b" class="cell" data-execution_count="10">
+<div id="5c27ec23" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 两个模型使用相同的完整观测，方便比较</span></span>
@@ -927,7 +927,7 @@ Dep. Variable:                    GPA   R-squared:                       0.017
 Model:                            OLS   Adj. R-squared:                  0.013
 Method:                 Least Squares   F-statistic:                     4.281
 Date:                Wed, 18 Nov 2026   Prob (F-statistic):             0.0396
-Time:                        00:20:05   Log-Likelihood:                -127.22
+Time:                        00:23:12   Log-Likelihood:                -127.22
 No. Observations:                 253   AIC:                             258.4
 Df Residuals:                     251   BIC:                             265.5
 Df Model:                           1                                         
@@ -952,7 +952,7 @@ Dep. Variable:                    GPA   R-squared:                       0.052
 Model:                            OLS   Adj. R-squared:                  0.044
 Method:                 Least Squares   F-statistic:                     6.847
 Date:                Wed, 18 Nov 2026   Prob (F-statistic):            0.00127
-Time:                        00:20:05   Log-Likelihood:                -122.62
+Time:                        00:23:12   Log-Likelihood:                -122.62
 No. Observations:                 253   AIC:                             251.2
 Df Residuals:                     250   BIC:                             261.8
 Df Model:                           2                                         
@@ -983,7 +983,7 @@ Notes:
 <p><span class="math inline">\(\displaystyle \widehat{\mathrm{GPA}}_i = 4.5023 - 0.0507\,\mathrm{WeekdayBed}_i\)</span></p>
 </div>
 </div>
-<div id="f41c497e" class="cell" data-execution_count="11">
+<div id="c707062e" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1103,7 +1103,7 @@ Notes:
 </section>
 <section id="research-q4is-there-an-indirect-statistical-association-between-bedtime-and-gpa-involving-weekday-sleep-duration" class="level2">
 <h2 class="anchored" data-anchor-id="research-q4is-there-an-indirect-statistical-association-between-bedtime-and-gpa-involving-weekday-sleep-duration">1.4 Research Q4:Is there an indirect statistical association between bedtime and GPA involving weekday sleep duration?</h2>
-<div id="d525bf30" class="cell" data-execution_count="12">
+<div id="ace2a56d" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1432,7 +1432,7 @@ Wing, C., Simon, K., &amp; Bello-Gomez, R. A. (2018). Designing difference in di
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/Amber767-li\.github\.io\/sleep-gpa\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
