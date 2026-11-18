@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Yunjun Li Amber">
+
+<title>Sleep time and GPA</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d31a0c91b01e363be7b7a36e602e2c70.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Sleep time and GPA</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-and-literature-review" id="toc-introduction-and-literature-review" class="nav-link active" data-scroll-target="#introduction-and-literature-review">Introduction and literature review</a></li>
+  <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a>
+  <ul class="collapse">
+  <li><a href="#research-design-and-participants" id="toc-research-design-and-participants" class="nav-link" data-scroll-target="#research-design-and-participants">Research Design and Participants</a></li>
+  <li><a href="#measures" id="toc-measures" class="nav-link" data-scroll-target="#measures">Measures</a>
+  <ul class="collapse">
+  <li><a href="#academic-performance" id="toc-academic-performance" class="nav-link" data-scroll-target="#academic-performance">Academic Performance</a></li>
+  <li><a href="#weekday-bedtime" id="toc-weekday-bedtime" class="nav-link" data-scroll-target="#weekday-bedtime">Weekday Bedtime</a></li>
+  <li><a href="#weekday-sleep-duration" id="toc-weekday-sleep-duration" class="nav-link" data-scroll-target="#weekday-sleep-duration">Weekday Sleep Duration</a></li>
+  </ul></li>
+  <li><a href="#statistical-analysis" id="toc-statistical-analysis" class="nav-link" data-scroll-target="#statistical-analysis">Statistical Analysis</a></li>
+  </ul></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#descriptive-analysis" id="toc-descriptive-analysis" class="nav-link" data-scroll-target="#descriptive-analysis">Descriptive Analysis</a></li>
+  <li><a href="#research-q-1-is-average-weekday-bedtime-associated-with-gpa" id="toc-research-q-1-is-average-weekday-bedtime-associated-with-gpa" class="nav-link" data-scroll-target="#research-q-1-is-average-weekday-bedtime-associated-with-gpa">1.1 Research Q 1: Is average weekday bedtime associated with GPA?</a></li>
+  <li><a href="#research-q2-does-a-quadratic-term-improve-the-description-of-the-bedtimegpa-association-beyond-a-linear-model" id="toc-research-q2-does-a-quadratic-term-improve-the-description-of-the-bedtimegpa-association-beyond-a-linear-model" class="nav-link" data-scroll-target="#research-q2-does-a-quadratic-term-improve-the-description-of-the-bedtimegpa-association-beyond-a-linear-model">1.2 Research Q2: Does a quadratic term improve the description of the bedtime–GPA association beyond a linear model?</a></li>
+  <li><a href="#research-q3-does-the-bedtimegpa-association-change-after-accounting-for-weekday-sleep-duration" id="toc-research-q3-does-the-bedtimegpa-association-change-after-accounting-for-weekday-sleep-duration" class="nav-link" data-scroll-target="#research-q3-does-the-bedtimegpa-association-change-after-accounting-for-weekday-sleep-duration">1.3 Research Q3: Does the bedtime–GPA association change after accounting for weekday sleep duration?</a></li>
+  <li><a href="#research-q4is-there-an-indirect-statistical-association-between-bedtime-and-gpa-involving-weekday-sleep-duration" id="toc-research-q4is-there-an-indirect-statistical-association-between-bedtime-and-gpa-involving-weekday-sleep-duration" class="nav-link" data-scroll-target="#research-q4is-there-an-indirect-statistical-association-between-bedtime-and-gpa-involving-weekday-sleep-duration">1.4 Research Q4:Is there an indirect statistical association between bedtime and GPA involving weekday sleep duration?</a></li>
+  </ul></li>
+  <li><a href="#results-and-general-discussion" id="toc-results-and-general-discussion" class="nav-link" data-scroll-target="#results-and-general-discussion">Results and General Discussion</a></li>
+  <li><a href="#limitations-and-future-directions" id="toc-limitations-and-future-directions" class="nav-link" data-scroll-target="#limitations-and-future-directions">Limitations and Future Directions</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Sleep time and GPA</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Yunjun Li Amber </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction-and-literature-review" class="level1">
+<h1>Introduction and literature review</h1>
+<p>For decades, the relationship between sleep and cognitive function has been a popular topic. Well-controlled sleep research conducted with healthy adults has found that better sleep is related to a myriad of superior cognitive functions, including better learning<span class="citation" data-cites="okano2019sleep diekelmann2009whats">(<a href="#ref-diekelmann2009whats" role="doc-biblioref">Diekelmann et al., 2009</a>; <a href="#ref-okano2019sleep" role="doc-biblioref">Okano et al., 2019</a>)</span> and memory<span class="citation" data-cites="fogel2007dissociable">(<a href="#ref-fogel2007dissociable" role="doc-biblioref">Fogel et al., 2007</a>)</span>. These effects have been found to extend beyond the laboratory setting, such that self-reported sleep measures from students in the comfort of their own homes have also been found to be associated with academic performance<span class="citation" data-cites="eliasson2010early gaultney2010prevalence">(<a href="#ref-eliasson2010early" role="doc-biblioref">Eliasson et al., 2010</a>; <a href="#ref-gaultney2010prevalence" role="doc-biblioref">Gaultney, 2010</a>)</span>.</p>
+<p>Sleep is thought to play an important and specific role in memory consolidation. Even though the exact underlying mechanisms of the relationship between sleep, memory, and neuroplasticity are yet to be fully explored, it is widely believed that specific synaptic connections that were active during awake periods are strengthened during sleep, facilitating the consolidation of memory <span class="citation" data-cites="walker2006sleep gilestro2009widespread">(<a href="#ref-gilestro2009widespread" role="doc-biblioref">Gilestro et al., 2009</a>; <a href="#ref-walker2006sleep" role="doc-biblioref">Walker &amp; Stickgold, 2006</a>)</span>. Therefore, sleep provides a crucial function for allowing us to remember what has been studied, which in turn is essential for successful academic performance.</p>
+<p>Apart from the influence of sleep on memory consolidation, lack of sleep has been linked to poor attention and cognition. Well-controlled sleep deprivation studies have shown that lack of sleep not only increases fatigue and sleepiness but also worsens cognitive performance<span class="citation" data-cites="lim2010meta harrison2000impact">(<a href="#ref-harrison2000impact" role="doc-biblioref">Harrison &amp; Horne, 2000</a>; <a href="#ref-lim2010meta" role="doc-biblioref">Lim &amp; Dinges, 2010</a>)</span>. Interestingly, previous research found that the cognitive performance of an individual who has been awake for 17 hours is equivalent to that exhibited by one who has a blood alcohol concentration of 0.05%<span class="citation" data-cites="dawson1997fatigue">(<a href="#ref-dawson1997fatigue" role="doc-biblioref">Dawson &amp; Reid, 1997</a>)</span>. Outside of a laboratory setting, studies examining sleep in the comfort of people’s own homes via self-report surveys have found that, compared with persistently good sleepers persistently poor sleepers experience significantly more daytime difficulies in regards to fatigue, sleepiness, and poor cognition <span class="citation" data-cites="alapin2000good">(<a href="#ref-alapin2000good" role="doc-biblioref">Alapin et al., 2000</a>)</span>.</p>
+<p>Sleep is associated with academic performance in school. Sleep deficit has been associated with decreased concentration and attention during class<span class="citation" data-cites="orzech2011state">(<a href="#ref-orzech2011state" role="doc-biblioref">Orzech et al., 2011</a>)</span>. More importantly, the timing of sleep may be particularly relevant to academic performance. In a questionnaire study, Students with higher academic performance reported earlier bedtimes and wake times than students with lower performance<span class="citation" data-cites="eliasson2010early">(<a href="#ref-eliasson2010early" role="doc-biblioref">Eliasson et al., 2010</a>)</span>. Additionally, under a fixed bedtime could reduce the time available for sleep, making shorter sleep duration one possible explanation for an association between later bedtime and lower GPA.</p>
+<p>Taken all together, these studies motivate examining bedtime and sleep duration jointly. The present study used an existing dataset <span class="citation" data-cites="onyper2012class">(<a href="#ref-onyper2012class" role="doc-biblioref">Onyper et al., 2012</a>)</span> to examine the relationship between average weekday bedtime and GPA among college students.</p>
+<p>The present study addressed four research questions:</p>
+<ol type="1">
+<li>Is average weekday bedtime associated with GPA?</li>
+<li>Does a quadratic term improve the description of the bedtime–GPA association beyond a linear model?</li>
+<li>Does the bedtime–GPA association change after accounting for weekday sleep duration?</li>
+<li>Is there an indirect statistical association between bedtime and GPA involving weekday sleep duration?</li>
+</ol>
+</section>
+<section id="method" class="level1">
+<h1>Method</h1>
+<section id="research-design-and-participants" class="level2">
+<h2 class="anchored" data-anchor-id="research-design-and-participants">Research Design and Participants</h2>
+<p>The present study involved a secondary analysis of the SleepStudy dataset, which contains data from 253 college students and identifies <span class="citation" data-cites="onyper2012class">Onyper et al. (<a href="#ref-onyper2012class" role="doc-biblioref">2012</a>)</span> as its original source. The original data collection included questionnaires about students’ attitudes and habits, cognitive assessments, and sleep diaries maintained over a two-week period. The present analysis focused on three variables: GPA, average weekday bedtime, and average weekday sleep duration. No new participants were recruited, and sleep schedules were not experimentally manipulated.</p>
+<p>A complete-case approach was used: students were included if they had nonmissing values on all three variables. The final analytic sample included 253 students. The same sample was used for the correlation, regression, and exploratory mediation analyses to ensure that comparisons across models were based on identical observations.</p>
+</section>
+<section id="measures" class="level2">
+<h2 class="anchored" data-anchor-id="measures">Measures</h2>
+<section id="academic-performance" class="level3">
+<h3 class="anchored" data-anchor-id="academic-performance">Academic Performance</h3>
+<p>Academic performance was operationalized as GPA, recorded on a 0–4 scale in the dataset. GPA was treated as a continuous outcome variable in all regression analyses.</p>
+</section>
+<section id="weekday-bedtime" class="level3">
+<h3 class="anchored" data-anchor-id="weekday-bedtime">Weekday Bedtime</h3>
+<p>Average weekday bedtime was measured using the variable <code>WeekdayBed</code>. Bedtime was recorded in continuous hours, with 24 representing midnight and 25 representing 1:00 a.m. the following day. Higher values therefore indicated later bedtimes. For the quadratic regression, bedtime was centered at midnight by subtracting 24 from the original values. The centered variable and its squared term were included in the model.</p>
+</section>
+<section id="weekday-sleep-duration" class="level3">
+<h3 class="anchored" data-anchor-id="weekday-sleep-duration">Weekday Sleep Duration</h3>
+<p>Average weekday sleep duration was measured using the variable <code>WeekdaySleep</code>, expressed in hours per night. This variable was included as an additional predictor in the adjusted regression model and as a potential mediator in an exploratory mediation analysis.</p>
+</section>
+</section>
+<section id="statistical-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-analysis">Statistical Analysis</h2>
+<p>Analyses were conducted in Python using pandas, NumPy, SciPy, and statsmodels. Figures were created using Matplotlib and seaborn. Descriptive statistics summarized the distributions of GPA, weekday bedtime, and weekday sleep duration. A scatterplot with a linear regression line and a locally weighted scatterplot smoothing (LOWESS) curve was used to visually examine the form of the bedtime–GPA association.</p>
+<p>Pearson’s correlation was calculated to assess the bivariate association between weekday bedtime and GPA. A simple ordinary least squares (OLS) regression was then fitted with GPA as the outcome and weekday bedtime as the predictor. To explore potential curvature, a quadratic model containing midnight-centered bedtime and its squared term was fitted. A nested-model F test examined whether adding the quadratic term improved model fit relative to the linear model.</p>
+<p>Diagnostics for the simple linear regression included a residuals-versus-fitted plot to assess linearity and homoscedasticity, a normal Q–Q plot to assess the residual distribution, and an influence plot displaying leverage, externally studentized residuals, and Cook’s distance. These diagnostics were used to identify observations warranting further examination; observations were not excluded on the basis of these diagnostics.</p>
+<p>To examine whether the bedtime–GPA association changed after accounting for sleep duration, a multiple regression model included both weekday bedtime and weekday sleep duration as predictors. The bedtime coefficient and explained variance were compared with those from the unadjusted model. For visualization, adjusted predictions were calculated with sleep duration held at its sample mean, and 95% confidence intervals for the predicted mean GPA were displayed.</p>
+<p>Finally, an exploratory mediation analysis estimated the indirect association between weekday bedtime and GPA involving weekday sleep duration. Path a was estimated by regressing sleep duration on bedtime. Path b and the adjusted bedtime association, c′, were estimated by regressing GPA on both bedtime and sleep duration. The indirect association was calculated as the product ab.</p>
+<p>An approximate 95% Monte Carlo confidence interval for ab was obtained from 100,000 simulated coefficient pairs. Coefficients were sampled independently from normal distributions centered on their OLS estimates, with standard deviations equal to their estimated standard errors. This procedure assumed zero sampling covariance between the estimates of a and b. The 2.5th and 97.5th percentiles of the simulated products defined the confidence interval. A random seed of 2026 was used for reproducibility.</p>
+<p>Regression inference used conventional OLS standard errors. Statistical tests were two-sided with an alpha level of .05, and regression results were reported using unstandardized coefficients and 95% confidence intervals. The quadratic and mediation analyses were treated as exploratory. Because the data were observational, the estimated associations were not interpreted as evidence of causal effects or a causal mediation mechanism.</p>
+</section>
+</section>
+<section id="data-analysis" class="level1">
+<h1>Data Analysis</h1>
+<section id="descriptive-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-analysis">Descriptive Analysis</h2>
+<div id="1141781d" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取数据</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/reisanar/datasets/master/SleepStudy.csv"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 保留本次分析需要的变量，删除这些变量中的缺失值</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> df[[<span class="st">"GPA"</span>, <span class="st">"WeekdayBed"</span>, <span class="st">"WeekdaySleep"</span>]].dropna().copy()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>display(d.describe())</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"分析样本量："</span>, <span class="bu">len</span>(d))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, Math, Markdown</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 与原分析保持相同的样本选择</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>d_basic <span class="op">=</span> df[[<span class="st">"GPA"</span>, <span class="st">"WeekdayBed"</span>,<span class="st">"WeekdaySleep"</span>]].dropna().copy()</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>d_basic[<span class="st">"bed_c"</span>] <span class="op">=</span> d_basic[<span class="st">"WeekdayBed"</span>] <span class="op">-</span> <span class="dv">24</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>d_sleep <span class="op">=</span> df[</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"GPA"</span>, <span class="st">"WeekdayBed"</span>, <span class="st">"WeekdaySleep"</span>]</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>].dropna().copy()</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 分别命名，避免覆盖之前的 m1、m2</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>fit_linear <span class="op">=</span> smf.ols(</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GPA ~ WeekdayBed"</span>, data<span class="op">=</span>d_basic</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>).fit()</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>fit_quad <span class="op">=</span> smf.ols(</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GPA ~ bed_c + I(bed_c ** 2)"</span>, data<span class="op">=</span>d_basic</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>).fit()</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>fit_total <span class="op">=</span> smf.ols(</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GPA ~ WeekdayBed"</span>, data<span class="op">=</span>d_sleep</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>).fit()</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>fit_adjusted <span class="op">=</span> smf.ols(</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GPA ~ WeekdayBed + WeekdaySleep"</span>, data<span class="op">=</span>d_sleep</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>).fit()</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>fit_a <span class="op">=</span> smf.ols(</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">"WeekdaySleep ~ WeekdayBed"</span>, data<span class="op">=</span>d_sleep</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>).fit()</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co"># 自动生成代入系数后的预测方程</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> show_equation(title, symbolic, model, outcome, terms):</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    display(Markdown(<span class="ss">f"**</span><span class="sc">{</span>title<span class="sc">}</span><span class="ss">（N = </span><span class="sc">{</span><span class="bu">int</span>(model.nobs)<span class="sc">}</span><span class="ss">）**"</span>))</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    display(Math(symbolic))</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    equation <span class="op">=</span> outcome <span class="op">+</span> <span class="ss">f" = </span><span class="sc">{</span>model<span class="sc">.</span>params[<span class="st">'Intercept'</span>]<span class="sc">:.4f}</span><span class="ss">"</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> parameter, variable <span class="kw">in</span> terms:</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        coefficient <span class="op">=</span> model.params[parameter]</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>        sign <span class="op">=</span> <span class="st">"+"</span> <span class="cf">if</span> coefficient <span class="op">&gt;=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">"-"</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>        equation <span class="op">+=</span> (</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>            <span class="vs">rf" </span><span class="sc">{</span>sign<span class="sc">}</span><span class="vs"> </span><span class="sc">{</span><span class="bu">abs</span>(coefficient)<span class="sc">:.4f}</span><span class="ch">\,</span><span class="sc">{</span>variable<span class="sc">}</span><span class="vs">"</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    display(Math(equation))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">GPA</th>
+<th data-quarto-table-cell-role="th">WeekdayBed</th>
+<th data-quarto-table-cell-role="th">WeekdaySleep</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">count</th>
+<td>253.000000</td>
+<td>253.000000</td>
+<td>253.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">mean</th>
+<td>3.243794</td>
+<td>24.847708</td>
+<td>7.866008</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">std</th>
+<td>0.404284</td>
+<td>1.033697</td>
+<td>1.167788</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">min</th>
+<td>2.000000</td>
+<td>21.800000</td>
+<td>3.000000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">25%</th>
+<td>3.000000</td>
+<td>24.200000</td>
+<td>7.200000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">50%</th>
+<td>3.300000</td>
+<td>24.800000</td>
+<td>7.950000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">75%</th>
+<td>3.500000</td>
+<td>25.500000</td>
+<td>8.600000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">max</th>
+<td>4.000000</td>
+<td>29.100000</td>
+<td>10.970000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>分析样本量： 253</code></pre>
+</div>
+</div>
+<p>注 / Note. 就寝时间使用连续小时编码：24 表示午夜，25 表示次日凌晨 1 点。Bedtime was coded continuously, with 24 representing midnight and 25 representing 1:00 a.m. the following day.</p>
+<p>中文报告 （Chinese Report）</p>
+<p>分析包括 253 名学生，GPA、工作日就寝时间和工作日睡眠时长均无缺失值。平均 GPA 为 3.24（SD = 0.40）。平均工作日就寝时间为次日凌晨约 00:51，编码均值为 24.85（SD = 1.03 小时）。平均工作日睡眠时长为 7.87 小时（SD = 1.17），范围为 3.00–10.97 小时。</p>
+<p>English report</p>
+<p>The analytic sample included 253 students with complete data on GPA, weekday bedtime, and weekday sleep duration. Mean GPA was 3.24 (SD = 0.40). Mean weekday bedtime was approximately 12:51 a.m. (coded M = 24.85, SD = 1.03 hours). Mean weekday sleep duration was 7.87 hours (SD = 1.17), ranging from 3.00 to 10.97 hours.</p>
+<p>Conclusion：</p>
+<p>学生平均在午夜后就寝，平均工作日睡眠时长接近 8 小时；就寝时间和睡眠时长存在一定个体差异。</p>
+<div id="c4862bf6" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 直线拟合</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sns.regplot(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>d,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"WeekdayBed"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"GPA"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    ci<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    scatter_kws<span class="op">=</span>{<span class="st">"alpha"</span>: <span class="fl">0.5</span>},</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"red"</span>, <span class="st">"label"</span>: <span class="st">"Linear fit"</span>},</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># LOWESS 平滑线：帮助观察可能的弯曲</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>sns.regplot(</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>d,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"WeekdayBed"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"GPA"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    lowess<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    scatter<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"green"</span>, <span class="st">"label"</span>: <span class="st">"LOWESS"</span>},</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Weekday bedtime (24 = midnight)"</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"GPA"</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">26</span>, <span class="dv">27</span>, <span class="dv">28</span>],</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"22:00"</span>, <span class="st">"23:00"</span>, <span class="st">"00:00"</span>, <span class="st">"01:00"</span>,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>     <span class="st">"02:00"</span>, <span class="st">"03:00"</span>, <span class="st">"04:00"</span>]</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Average weekday bedtime"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-3-output-1.png" width="672" height="431" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>中文报告</p>
+<p>散点图显示，工作日就寝时间与 GPA 之间存在轻微的负向趋势，但相同就寝时间下的 GPA 差异较大。LOWESS 平滑线与线性回归线在大部分观测范围内较为接近，未显示明显而稳定的弯曲模式。数据分布两端的观测相对较少，因此这些区域的局部趋势应谨慎解释。</p>
+<p>English report</p>
+<p>Visual inspection of the scatterplot suggested a slight negative association between weekday bedtime and GPA, with substantial variation in GPA at similar bedtimes. The LOWESS smoother generally followed the linear regression line across most of the observed range, providing little visual evidence of pronounced, systematic curvature. Local trends near the extremes should be interpreted cautiously because observations were relatively sparse in these regions.</p>
+<p>结论： 线性模型可以作为初步描述，但就寝时间对学生之间 GPA 差异的解释能力可能较弱。LOWESS 图本身不能确定是否存在显著的非线性关系。</p>
+</section>
+<section id="research-q-1-is-average-weekday-bedtime-associated-with-gpa" class="level2">
+<h2 class="anchored" data-anchor-id="research-q-1-is-average-weekday-bedtime-associated-with-gpa">1.1 Research Q 1: Is average weekday bedtime associated with GPA?</h2>
+<div id="22dbd240" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 确保两列使用相同的完整观测</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> df[</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"GPA"</span>, <span class="st">"WeekdayBed"</span>, <span class="st">"WeekdaySleep"</span>]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>].dropna().copy()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>r, p <span class="op">=</span> pearsonr(d[<span class="st">"WeekdayBed"</span>], d[<span class="st">"GPA"</span>])</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Pearson's r = </span><span class="sc">{</span>r<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"p-value = </span><span class="sc">{</span>p<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Pearson's r = -0.130
+p-value = 0.040</code></pre>
+</div>
+</div>
+<p>中文报告</p>
+<p>Pearson 相关分析显示，工作日就寝时间与 GPA 存在较弱的负相关，r(251) = −.130，p = .040。较晚就寝的学生倾向于报告略低的 GPA，但相关程度较小。</p>
+<p>English report</p>
+<p>A Pearson correlation indicated a weak negative association between weekday bedtime and GPA, r(251) = −.130, p = .040. Students with later bedtimes tended to report slightly lower GPAs, although the magnitude of the association was small.</p>
+<p>结论： 就寝时间与 GPA 的负相关达到 .05 显著性水平，但效应较小，不能据此推断晚睡导致 GPA 降低。</p>
+<div id="4acf1885" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> smf.ols(<span class="st">"GPA ~ WeekdayBed"</span>, data<span class="op">=</span>d).fit()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(m1.summary())</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 简单线性回归</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>show_equation(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1. 简单线性回归"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="dv">\m</span><span class="vs">athrm{GPA}_i = </span><span class="dv">\b</span><span class="vs">eta_0"</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="op">+</span><span class="dv">\b</span><span class="vs">eta_1</span><span class="dv">\m</span><span class="vs">athrm{WeekdayBed}_i</span><span class="op">+</span><span class="ch">\v</span><span class="vs">arepsilon_i"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    fit_linear,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="dv">\w</span><span class="vs">idehat{</span><span class="dv">\m</span><span class="vs">athrm{GPA}}_i"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    [(<span class="st">"WeekdayBed"</span>, <span class="vs">r"</span><span class="dv">\m</span><span class="vs">athrm{WeekdayBed}_i"</span>)]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    GPA   R-squared:                       0.017
+Model:                            OLS   Adj. R-squared:                  0.013
+Method:                 Least Squares   F-statistic:                     4.281
+Date:                Wed, 18 Nov 2026   Prob (F-statistic):             0.0396
+Time:                        00:20:05   Log-Likelihood:                -127.22
+No. Observations:                 253   AIC:                             258.4
+Df Residuals:                     251   BIC:                             265.5
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      4.5023      0.609      7.396      0.000       3.303       5.701
+WeekdayBed    -0.0507      0.024     -2.069      0.040      -0.099      -0.002
+==============================================================================
+Omnibus:                        8.764   Durbin-Watson:                   1.888
+Prob(Omnibus):                  0.013   Jarque-Bera (JB):                8.743
+Skew:                          -0.447   Prob(JB):                       0.0126
+Kurtosis:                       3.177   Cond. No.                         600.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><strong>1. 简单线性回归（N = 253）</strong></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math inline">\(\displaystyle \mathrm{GPA}_i = \beta_0+\beta_1\mathrm{WeekdayBed}_i+\varepsilon_i\)</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math inline">\(\displaystyle \widehat{\mathrm{GPA}}_i = 4.5023 - 0.0507\,\mathrm{WeekdayBed}_i\)</span></p>
+</div>
+</div>
+</section>
+<section id="research-q2-does-a-quadratic-term-improve-the-description-of-the-bedtimegpa-association-beyond-a-linear-model" class="level2">
+<h2 class="anchored" data-anchor-id="research-q2-does-a-quadratic-term-improve-the-description-of-the-bedtimegpa-association-beyond-a-linear-model">1.2 Research Q2: Does a quadratic term improve the description of the bedtime–GPA association beyond a linear model?</h2>
+<div id="9d6924a1" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用普通 OLS 标准误</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 确保 m1 是通过 smf.ols(...).fit() 拟合的模型</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 在模型实际使用的就寝时间范围内生成预测点</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> m1.model.exog[:, m1.model.exog_names.index(<span class="st">"WeekdayBed"</span>)]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>prediction_data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"WeekdayBed"</span>: np.linspace(x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), <span class="dv">200</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> m1.get_prediction(prediction_data).summary_frame(alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>ax.scatter(</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    x, m1.model.endog,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.4</span>,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"steelblue"</span>,</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Observed GPA"</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    prediction_data[<span class="st">"WeekdayBed"</span>],</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    pred[<span class="st">"mean"</span>],</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"red"</span>,</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"OLS regression line"</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>ax.fill_between(</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    prediction_data[<span class="st">"WeekdayBed"</span>].to_numpy(),</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    pred[<span class="st">"mean_ci_lower"</span>].to_numpy(),</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    pred[<span class="st">"mean_ci_upper"</span>].to_numpy(),</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"red"</span>,</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.15</span>,</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"95% CI (ordinary OLS)"</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co"># 横轴显示为时钟时间</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>ticks <span class="op">=</span> np.arange(np.floor(x.<span class="bu">min</span>()), np.ceil(x.<span class="bu">max</span>()) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(ticks, [<span class="ss">f"</span><span class="sc">{</span><span class="bu">int</span>(t) <span class="op">%</span> <span class="dv">24</span><span class="sc">:02d}</span><span class="ss">:00"</span> <span class="cf">for</span> t <span class="kw">in</span> ticks])</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Average weekday bedtime"</span>)</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"GPA"</span>)</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Weekday Bedtime and GPA"</span>)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-6-output-1.png" width="762" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>中文报告</p>
+<p>采用简单线性回归检验工作日就寝时间与 GPA 的关系。模型整体达到统计显著，F(1, 251) = 4.28，p = .040，R² = .017。工作日就寝时间显著负向预测 GPA，b = −0.051，SE = 0.024，t(251) = −2.07，p = .040，95% CI [−0.099, −0.002]。就寝时间每晚 1 小时，预测 GPA 平均降低约 0.051 分。</p>
+<p>English report</p>
+<p>A simple linear regression examined the association between weekday bedtime and GPA. The overall model was statistically significant, F(1, 251) = 4.28, p = .040, R² = .017. Weekday bedtime negatively predicted GPA, b = −0.051, SE = 0.024, t(251) = −2.07, p = .040, 95% CI [−0.099, −0.002]. Each one-hour later bedtime was associated with an approximately 0.051-point lower predicted GPA.</p>
+<p>结论： 普通 OLS 推断下，就寝时间与 GPA 的负关联显著，但模型只解释约 1.7% 的 GPA 方差，解释能力有限。</p>
+<div id="6016bc2c" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 0 = 午夜；-1 = 晚上 11 点；1 = 凌晨 1 点</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>d[<span class="st">"bed_c"</span>] <span class="op">=</span> d[<span class="st">"WeekdayBed"</span>] <span class="op">-</span> <span class="dv">24</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> smf.ols(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GPA ~ bed_c + I(bed_c ** 2)"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>d</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>).fit()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(m2.summary())</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 比较：增加平方项是否改善拟合？</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 这个 F 检验使用常规 OLS 假设</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>display(sm.stats.anova_lm(m1, m2))</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 二次回归</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>display(Math(<span class="vs">r"</span><span class="dv">\m</span><span class="vs">athrm{bed}_{c,i}=</span><span class="dv">\m</span><span class="vs">athrm{WeekdayBed}_i-24"</span>))</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>show_equation(</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"2. 二次回归"</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="dv">\m</span><span class="vs">athrm{GPA}_i=</span><span class="er">\</span><span class="vs">gamma_0"</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="op">+</span><span class="er">\</span><span class="vs">gamma_1</span><span class="dv">\m</span><span class="vs">athrm{bed}_{c,i}"</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="op">+</span><span class="er">\</span><span class="vs">gamma_2</span><span class="dv">\m</span><span class="vs">athrm{bed}_{c,i}</span><span class="dv">^</span><span class="op">{2}+</span><span class="ch">\v</span><span class="vs">arepsilon_i"</span>,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    fit_quad,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="dv">\w</span><span class="vs">idehat{</span><span class="dv">\m</span><span class="vs">athrm{GPA}}_i"</span>,</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"bed_c"</span>, <span class="vs">r"</span><span class="dv">\m</span><span class="vs">athrm{bed}_{c,i}"</span>),</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"I(bed_c ** 2)"</span>, <span class="vs">r"</span><span class="dv">\m</span><span class="vs">athrm{bed}_{c,i}</span><span class="dv">^</span><span class="op">{2}</span><span class="vs">"</span>)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    GPA   R-squared:                       0.018
+Model:                            OLS   Adj. R-squared:                  0.010
+Method:                 Least Squares   F-statistic:                     2.269
+Date:                Wed, 18 Nov 2026   Prob (F-statistic):              0.106
+Time:                        00:20:05   Log-Likelihood:                -127.09
+No. Observations:                 253   AIC:                             260.2
+Df Residuals:                     250   BIC:                             270.8
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          t      P&gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------
+Intercept         3.2877      0.033    100.289      0.000       3.223       3.352
+bed_c            -0.0360      0.037     -0.964      0.336      -0.110       0.038
+I(bed_c ** 2)    -0.0075      0.014     -0.519      0.604      -0.036       0.021
+==============================================================================
+Omnibus:                        8.198   Durbin-Watson:                   1.889
+Prob(Omnibus):                  0.017   Jarque-Bera (JB):                8.174
+Skew:                          -0.435   Prob(JB):                       0.0168
+Kurtosis:                       3.132   Cond. No.                         5.79
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">df_resid</th>
+<th data-quarto-table-cell-role="th">ssr</th>
+<th data-quarto-table-cell-role="th">df_diff</th>
+<th data-quarto-table-cell-role="th">ss_diff</th>
+<th data-quarto-table-cell-role="th">F</th>
+<th data-quarto-table-cell-role="th">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>251.0</td>
+<td>40.497567</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>250.0</td>
+<td>40.453912</td>
+<td>1.0</td>
+<td>0.043655</td>
+<td>0.269781</td>
+<td>0.603939</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math inline">\(\displaystyle \mathrm{bed}_{c,i}=\mathrm{WeekdayBed}_i-24\)</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><strong>2. 二次回归（N = 253）</strong></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math inline">\(\displaystyle \mathrm{GPA}_i=\gamma_0+\gamma_1\mathrm{bed}_{c,i}+\gamma_2\mathrm{bed}_{c,i}^{2}+\varepsilon_i\)</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math inline">\(\displaystyle \widehat{\mathrm{GPA}}_i = 3.2877 - 0.0360\,\mathrm{bed}_{c,i} - 0.0075\,\mathrm{bed}_{c,i}^{2}\)</span></p>
+</div>
+</div>
+<p>中文报告</p>
+<p>为检验就寝时间与 GPA 之间是否存在二次关系，首先将就寝时间以午夜为中心，再将中心化变量及其平方项纳入回归模型。二次模型整体未达到统计显著，F(2, 250) = 2.27，p = .106，R² = .018。平方项不显著，b = −0.0075，SE = 0.0144，t(250) = −0.52，p = .604，95% CI [−0.0359, 0.0209]。与线性模型相比，增加平方项并未显著改善拟合，ΔF(1, 250) = 0.27，p = .604，ΔR² = .001。</p>
+<p>English report</p>
+<p>To examine a possible quadratic association, weekday bedtime was centered at midnight, and both the centered term and its square were included in the regression model. The overall quadratic model was not statistically significant, F(2, 250) = 2.27, p = .106, R² = .018. The quadratic term was not significant, b = −0.0075, SE = 0.0144, t(250) = −0.52, p = .604, 95% CI [−0.0359, 0.0209]. Adding the quadratic term did not significantly improve model fit relative to the linear model, ΔF(1, 250) = 0.27, p = .604, ΔR² = .001.</p>
+<p>结论： 数据未提供支持二次关系的充分证据，也不足以确定一个使预测 GPA 最高的“最佳就寝时间”。</p>
+<div id="ed3ea44c" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">5</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 残差图：检查线性关系和方差齐性</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>sns.residplot(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>m1.fittedvalues,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>m1.resid,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    lowess<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    scatter_kws<span class="op">=</span>{<span class="st">"alpha"</span>: <span class="fl">0.5</span>},</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"red"</span>},</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>axes[<span class="dv">0</span>]</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"gray"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"Fitted GPA"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Residuals"</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Residuals vs. Fitted"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-1.png" width="1431" height="451" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>中文报告</p>
+<p>残差与拟合值图未显示明显的系统性曲线模式，LOWESS 平滑线在大部分拟合值范围内接近零。图中也未观察到明显的漏斗形模式，提示线性关系和方差齐性假设未出现突出的视觉违背。不过，部分观测具有较大的负残差。</p>
+<p>English report</p>
+<p>The residuals-versus-fitted plot showed no pronounced systematic curvature, and the LOWESS smoother remained close to zero across most of the fitted range. No clear funnel-shaped pattern was apparent, suggesting no prominent visual violations of linearity or homoscedasticity. However, several observations had relatively large negative residuals.</p>
+<p>结论： 残差图总体支持将线性模型作为初步分析，但图形检查不能证明方差完全相等，也不能排除其他模型问题。</p>
+<div id="017d9b1d" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Q–Q 图：检查残差正态性</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sm.qqplot(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    m1.resid,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    line<span class="op">=</span><span class="st">"45"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    fit<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>axes[<span class="dv">1</span>]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Normal Q–Q Plot"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>Text(0.5, 1.0, 'Normal Q–Q Plot')</code></pre>
+</div>
+</div>
+<p>中文报告</p>
+<p>正态 Q–Q 图显示，残差在分布中央区域大致接近正态参考线，但在两端出现偏离，尤其是下尾存在较大的负残差。这表明残差分布近似正态，但存在一定的左偏和尾部偏离。</p>
+<p>English report</p>
+<p>The normal Q–Q plot indicated that residuals approximately followed the normal reference line in the central portion of the distribution. Deviations were evident in the tails, particularly in the lower tail, where several large negative residuals occurred. These findings suggest approximate normality with some negative skewness and tail departures.</p>
+<p>结论： 不宜写“残差完全服从正态分布”；更准确的说法是“中央部分近似正态，但尾部存在偏离”。</p>
+<div id="463084f2" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 影响气泡图：检查杠杆值、残差和影响力</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sm.graphics.influence_plot(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    m1,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    criterion<span class="op">=</span><span class="st">"cooks"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>axes[<span class="dv">2</span>]</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加学生化残差参考线</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axhline(</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Residual = ±2"</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axhline(</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加杠杆值参考线</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">int</span>(m1.nobs)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="bu">len</span>(m1.params)  <span class="co"># 包括截距</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axvline(</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span> <span class="op">*</span> p <span class="op">/</span> n,</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"orange"</span>,</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    linestyle<span class="op">=</span><span class="st">"--"</span>,</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Leverage = 2p/n"</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">"Influence Plot"</span>)</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].legend()</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;Figure size 672x480 with 0 Axes&gt;</code></pre>
+</div>
+</div>
+<p>影响诊断发现，22 个观测的杠杆值超过参考阈值 (2p/n=.0158)，其中 (p=2)，包括截距和一个预测变量。9 个观测的外部学生化残差绝对值超过 2，其中 2 个超过 3。最大 Cook’s distance 为 0.128，没有观测超过 1。部分观测因此值得进一步核查，但这些诊断结果本身不足以支持直接删除观测，也不能确认结果不受影响点影响。</p>
+<p>English report</p>
+<p>Influence diagnostics identified 22 observations with leverage values exceeding the reference threshold of (2p/n=.0158), where (p=2) included the intercept and one predictor. Nine observations had absolute externally studentized residuals greater than 2, including two greater than 3. The maximum Cook’s distance was 0.128, and no observation exceeded 1. These findings identify cases warranting further examination but do not, by themselves, justify excluding observations or establish that the results are insensitive to influential cases.</p>
+<p>结论： 存在需要关注的观测。应先核查数据是否有误；如需评价结果稳定性，可以补充敏感性分析，而不是仅根据气泡大小删除学生。</p>
+</section>
+<section id="research-q3-does-the-bedtimegpa-association-change-after-accounting-for-weekday-sleep-duration" class="level2">
+<h2 class="anchored" data-anchor-id="research-q3-does-the-bedtimegpa-association-change-after-accounting-for-weekday-sleep-duration">1.3 Research Q3: Does the bedtime–GPA association change after accounting for weekday sleep duration?</h2>
+<div id="2e44139b" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 两个模型使用相同的完整观测，方便比较</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>d_sleep <span class="op">=</span> df[</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"GPA"</span>, <span class="st">"WeekdayBed"</span>, <span class="st">"WeekdaySleep"</span>]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>].dropna().copy()</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 模型 1：不控制睡眠时长</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> smf.ols(</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GPA ~ WeekdayBed"</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>d_sleep</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>).fit()</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 模型 2：控制工作日睡眠时长</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> smf.ols(</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GPA ~ WeekdayBed + WeekdaySleep"</span>,</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>d_sleep</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>).fit()</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(m1.summary())</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(m2.summary())</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 使用睡眠变量完整样本的总关联模型</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>show_equation(</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"3. 未控制睡眠时长：总关联 c"</span>,</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="dv">\m</span><span class="vs">athrm{GPA}_i=</span><span class="ch">\t</span><span class="vs">au_0"</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="op">+</span><span class="vs">c</span><span class="ch">\,</span><span class="dv">\m</span><span class="vs">athrm{WeekdayBed}_i</span><span class="op">+</span><span class="ch">\v</span><span class="vs">arepsilon_{T,i}"</span>,</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    fit_total,</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="dv">\w</span><span class="vs">idehat{</span><span class="dv">\m</span><span class="vs">athrm{GPA}}_i"</span>,</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    [(<span class="st">"WeekdayBed"</span>, <span class="vs">r"</span><span class="dv">\m</span><span class="vs">athrm{WeekdayBed}_i"</span>)]</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    GPA   R-squared:                       0.017
+Model:                            OLS   Adj. R-squared:                  0.013
+Method:                 Least Squares   F-statistic:                     4.281
+Date:                Wed, 18 Nov 2026   Prob (F-statistic):             0.0396
+Time:                        00:20:05   Log-Likelihood:                -127.22
+No. Observations:                 253   AIC:                             258.4
+Df Residuals:                     251   BIC:                             265.5
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      4.5023      0.609      7.396      0.000       3.303       5.701
+WeekdayBed    -0.0507      0.024     -2.069      0.040      -0.099      -0.002
+==============================================================================
+Omnibus:                        8.764   Durbin-Watson:                   1.888
+Prob(Omnibus):                  0.013   Jarque-Bera (JB):                8.743
+Skew:                          -0.447   Prob(JB):                       0.0126
+Kurtosis:                       3.177   Cond. No.                         600.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    GPA   R-squared:                       0.052
+Model:                            OLS   Adj. R-squared:                  0.044
+Method:                 Least Squares   F-statistic:                     6.847
+Date:                Wed, 18 Nov 2026   Prob (F-statistic):            0.00127
+Time:                        00:20:05   Log-Likelihood:                -122.62
+No. Observations:                 253   AIC:                             251.2
+Df Residuals:                     250   BIC:                             261.8
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+================================================================================
+                   coef    std err          t      P&gt;|t|      [0.025      0.975]
+--------------------------------------------------------------------------------
+Intercept        6.3951      0.863      7.408      0.000       4.695       8.095
+WeekdayBed      -0.1018      0.029     -3.466      0.001      -0.160      -0.044
+WeekdaySleep    -0.0791      0.026     -3.045      0.003      -0.130      -0.028
+==============================================================================
+Omnibus:                       10.604   Durbin-Watson:                   1.905
+Prob(Omnibus):                  0.005   Jarque-Bera (JB):               10.735
+Skew:                          -0.468   Prob(JB):                      0.00467
+Kurtosis:                       3.379   Cond. No.                         907.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><strong>3. 未控制睡眠时长：总关联 c（N = 253）</strong></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math inline">\(\displaystyle \mathrm{GPA}_i=\tau_0+c\,\mathrm{WeekdayBed}_i+\varepsilon_{T,i}\)</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math inline">\(\displaystyle \widehat{\mathrm{GPA}}_i = 4.5023 - 0.0507\,\mathrm{WeekdayBed}_i\)</span></p>
+</div>
+</div>
+<div id="f41c497e" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成连续的入睡时间，用来画回归线</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>bed_grid <span class="op">=</span> np.linspace(</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    d_sleep[<span class="st">"WeekdayBed"</span>].<span class="bu">min</span>(),</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    d_sleep[<span class="st">"WeekdayBed"</span>].<span class="bu">max</span>(),</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">200</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 模型 2：将睡眠时长固定在样本平均值</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>mean_sleep <span class="op">=</span> d_sleep[<span class="st">"WeekdaySleep"</span>].mean()</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>prediction_data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"WeekdayBed"</span>: bed_grid,</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"WeekdaySleep"</span>: mean_sleep</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 两个模型的预测值及 95% 置信区间</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>pred1 <span class="op">=</span> m1.get_prediction(prediction_data).summary_frame(alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>pred2 <span class="op">=</span> m2.get_prediction(prediction_data).summary_frame(alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 原始观测数据</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>ax.scatter(</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    d_sleep[<span class="st">"WeekdayBed"</span>],</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    d_sleep[<span class="st">"GPA"</span>],</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"gray"</span>,</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.25</span>,</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span><span class="dv">25</span>,</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Observed data"</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 模型 1：未控制睡眠时长</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>    bed_grid,</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>    pred1[<span class="st">"mean"</span>].to_numpy(),</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#2878B5"</span>,</span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="fl">2.5</span>,</span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Model 1: Unadjusted"</span></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>ax.fill_between(</span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>    bed_grid,</span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>    pred1[<span class="st">"mean_ci_lower"</span>].to_numpy(),</span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>    pred1[<span class="st">"mean_ci_upper"</span>].to_numpy(),</span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#2878B5"</span>,</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.15</span></span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="co"># 模型 2：控制睡眠时长</span></span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>    bed_grid,</span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>    pred2[<span class="st">"mean"</span>].to_numpy(),</span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#D95319"</span>,</span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="fl">2.5</span>,</span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>    linestyle<span class="op">=</span><span class="st">"--"</span>,</span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Model 2: Adjusted for sleep duration"</span></span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>ax.fill_between(</span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a>    bed_grid,</span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>    pred2[<span class="st">"mean_ci_lower"</span>].to_numpy(),</span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>    pred2[<span class="st">"mean_ci_upper"</span>].to_numpy(),</span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#D95319"</span>,</span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.15</span></span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(</span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">"Weekday bedtime (original coding)"</span>,</span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">"GPA"</span>,</span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Weekday bedtime and GPA"</span></span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a>ax.text(</span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.02</span>, <span class="fl">0.02</span>,</span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Model 2 holds sleep duration at </span><span class="sc">{</span>mean_sleep<span class="sc">:.2f}</span><span class="ss"> hours"</span>,</span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>ax.transAxes,</span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a>ax.legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a>ax.spines[[<span class="st">"top"</span>, <span class="st">"right"</span>]].set_visible(<span class="va">False</span>)</span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a><span class="co"># 横坐标范围：晚上 21:00 到次日早上 06:00</span></span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a>ticks <span class="op">=</span> np.arange(<span class="dv">21</span>, <span class="dv">31</span>)</span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(</span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a>    ticks,</span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a>    [<span class="ss">f"</span><span class="sc">{</span><span class="bu">int</span>(t) <span class="op">%</span> <span class="dv">24</span><span class="sc">:02d}</span><span class="ss">:00"</span> <span class="cf">for</span> t <span class="kw">in</span> ticks]</span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">21</span>, <span class="dv">30</span>)</span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Average weekday bedtime"</span>)</span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-12-output-1.png" width="858" height="566" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>中文报告</p>
+<p>使用相同的 253 个完整观测，比较未控制和控制工作日睡眠时长的回归模型。加入睡眠时长后，模型整体显著，F(2, 250) = 6.85，p = .001，R² = .052，较未调整模型增加约 .035 的解释方差。控制睡眠时长后，较晚就寝仍与较低 GPA 相关，且系数绝对值由 0.051 增大至 0.102，b = −0.102，SE = 0.029，t(250) = −3.47，p &lt; .001，95% CI [−0.160, −0.044]。此外，控制就寝时间后，较长睡眠时长也与较低 GPA 相关，b = −0.079，SE = 0.026，t(250) = −3.04，p = .003，95% CI [−0.130, −0.028]。</p>
+<p>比较图将睡眠时长固定为样本均值 7.87 小时，以展示调整后的预测 GPA；橙色回归线表示这一固定睡眠时长下的预测关系。</p>
+<p>English report</p>
+<p>Unadjusted and adjusted regression models were compared using the same 253 complete observations. After weekday sleep duration was added, the overall model was significant, F(2, 250) = 6.85, p = .001, R² = .052, representing an increase of approximately .035 in explained variance. Controlling for sleep duration, later bedtime remained associated with lower GPA, and the coefficient increased in absolute magnitude from 0.051 to 0.102, b = −0.102, SE = 0.029, t(250) = −3.47, p &lt; .001, 95% CI [−0.160, −0.044]. Controlling for bedtime, longer sleep duration was also associated with lower GPA, b = −0.079, SE = 0.026, t(250) = −3.04, p = .003, 95% CI [−0.130, −0.028].</p>
+<p>For visualization, sleep duration was held at its sample mean of 7.87 hours. The orange regression line therefore represents the adjusted association at that fixed sleep duration.</p>
+</section>
+<section id="research-q4is-there-an-indirect-statistical-association-between-bedtime-and-gpa-involving-weekday-sleep-duration" class="level2">
+<h2 class="anchored" data-anchor-id="research-q4is-there-an-indirect-statistical-association-between-bedtime-and-gpa-involving-weekday-sleep-duration">1.4 Research Q4:Is there an indirect statistical association between bedtime and GPA involving weekday sleep duration?</h2>
+<div id="d525bf30" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 两个模型使用相同的完整观测</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>d_med <span class="op">=</span> df[</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"WeekdayBed"</span>, <span class="st">"WeekdaySleep"</span>, <span class="st">"GPA"</span>]</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>].dropna().copy()</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 路径 a：就寝时间 → 睡眠时长</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>model_a <span class="op">=</span> smf.ols(</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"WeekdaySleep ~ WeekdayBed"</span>,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>d_med</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>).fit()</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 路径 b 和 c'：同时预测 GPA</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>model_b <span class="op">=</span> smf.ols(</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GPA ~ WeekdayBed + WeekdaySleep"</span>,</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>d_med</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>).fit()</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 提取系数与普通 OLS 标准误</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> model_a.params[<span class="st">"WeekdayBed"</span>]</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>se_a <span class="op">=</span> model_a.bse[<span class="st">"WeekdayBed"</span>]</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> model_b.params[<span class="st">"WeekdaySleep"</span>]</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>se_b <span class="op">=</span> model_b.bse[<span class="st">"WeekdaySleep"</span>]</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>c_prime <span class="op">=</span> model_b.params[<span class="st">"WeekdayBed"</span>]</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Monte Carlo：模拟系数的抽样分布</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2026</span>)</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>n_sim <span class="op">=</span> <span class="dv">100_000</span></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 基础方法：近似假设 a、b 的抽样协方差为 0</span></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>a_sim <span class="op">=</span> rng.normal(a, se_a, n_sim)</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>b_sim <span class="op">=</span> rng.normal(b, se_b, n_sim)</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>indirect_sim <span class="op">=</span> a_sim <span class="op">*</span> b_sim</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. 间接关联及其 95% Monte Carlo 置信区间</span></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>indirect <span class="op">=</span> a <span class="op">*</span> b</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>ci_low, ci_high <span class="op">=</span> np.quantile(indirect_sim, [<span class="fl">0.025</span>, <span class="fl">0.975</span>])</span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"N = </span><span class="sc">{</span><span class="bu">len</span>(d_med)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a = </span><span class="sc">{</span>a<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"b = </span><span class="sc">{</span>b<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"c' = </span><span class="sc">{</span>c_prime<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Indirect association (a × b) = </span><span class="sc">{</span>indirect<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% Monte Carlo CI = [</span><span class="sc">{</span>ci_low<span class="sc">:.4f}</span><span class="ss">, </span><span class="sc">{</span>ci_high<span class="sc">:.4f}</span><span class="ss">]"</span>)</span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. 展示模拟得到的间接关联分布</span></span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a>ax.hist(</span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>    indirect_sim,</span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a>    bins<span class="op">=</span><span class="dv">60</span>,</span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"steelblue"</span>,</span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>    edgecolor<span class="op">=</span><span class="st">"white"</span></span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>ax.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Zero"</span>)</span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>ax.axvline(ci_low, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"95% CI limits"</span>)</span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a>ax.axvline(ci_high, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Simulated indirect association (a × b)"</span>)</span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Monte Carlo Distribution of the Indirect Association"</span>)</span>
+<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 控制睡眠时长：也是中介分析中的 b 和 c′ 方程</span></span>
+<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a>show_equation(</span>
+<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a>    <span class="st">"4. 控制睡眠时长：路径 b 和 c′"</span>,</span>
+<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="dv">\m</span><span class="vs">athrm{GPA}_i=</span><span class="ch">\n</span><span class="vs">u_0"</span></span>
+<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="op">+</span><span class="vs">c'</span><span class="dv">\m</span><span class="vs">athrm{WeekdayBed}_i"</span></span>
+<span id="cb19-79"><a href="#cb19-79" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="op">+</span><span class="vs">b</span><span class="ch">\,</span><span class="dv">\m</span><span class="vs">athrm{WeekdaySleep}_i</span><span class="op">+</span><span class="ch">\v</span><span class="vs">arepsilon_{Y,i}"</span>,</span>
+<span id="cb19-80"><a href="#cb19-80" aria-hidden="true" tabindex="-1"></a>    fit_adjusted,</span>
+<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="dv">\w</span><span class="vs">idehat{</span><span class="dv">\m</span><span class="vs">athrm{GPA}}_i"</span>,</span>
+<span id="cb19-82"><a href="#cb19-82" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb19-83"><a href="#cb19-83" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"WeekdayBed"</span>, <span class="vs">r"</span><span class="dv">\m</span><span class="vs">athrm{WeekdayBed}_i"</span>),</span>
+<span id="cb19-84"><a href="#cb19-84" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"WeekdaySleep"</span>, <span class="vs">r"</span><span class="dv">\m</span><span class="vs">athrm{WeekdaySleep}_i"</span>)</span>
+<span id="cb19-85"><a href="#cb19-85" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb19-86"><a href="#cb19-86" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-87"><a href="#cb19-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-88"><a href="#cb19-88" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. 中介分析中的路径 a</span></span>
+<span id="cb19-89"><a href="#cb19-89" aria-hidden="true" tabindex="-1"></a>show_equation(</span>
+<span id="cb19-90"><a href="#cb19-90" aria-hidden="true" tabindex="-1"></a>    <span class="st">"5. 就寝时间预测睡眠时长：路径 a"</span>,</span>
+<span id="cb19-91"><a href="#cb19-91" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="dv">\m</span><span class="vs">athrm{WeekdaySleep}_i=</span><span class="dv">\m</span><span class="vs">u_0"</span></span>
+<span id="cb19-92"><a href="#cb19-92" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="op">+</span><span class="vs">a</span><span class="ch">\,</span><span class="dv">\m</span><span class="vs">athrm{WeekdayBed}_i</span><span class="op">+</span><span class="ch">\v</span><span class="vs">arepsilon_{M,i}"</span>,</span>
+<span id="cb19-93"><a href="#cb19-93" aria-hidden="true" tabindex="-1"></a>    fit_a,</span>
+<span id="cb19-94"><a href="#cb19-94" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="dv">\w</span><span class="vs">idehat{</span><span class="dv">\m</span><span class="vs">athrm{WeekdaySleep}}_i"</span>,</span>
+<span id="cb19-95"><a href="#cb19-95" aria-hidden="true" tabindex="-1"></a>    [(<span class="st">"WeekdayBed"</span>, <span class="vs">r"</span><span class="dv">\m</span><span class="vs">athrm{WeekdayBed}_i"</span>)]</span>
+<span id="cb19-96"><a href="#cb19-96" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-97"><a href="#cb19-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-98"><a href="#cb19-98" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. 代入实际系数，显示关联分解</span></span>
+<span id="cb19-99"><a href="#cb19-99" aria-hidden="true" tabindex="-1"></a>a_hat <span class="op">=</span> fit_a.params[<span class="st">"WeekdayBed"</span>]</span>
+<span id="cb19-100"><a href="#cb19-100" aria-hidden="true" tabindex="-1"></a>b_hat <span class="op">=</span> fit_adjusted.params[<span class="st">"WeekdaySleep"</span>]</span>
+<span id="cb19-101"><a href="#cb19-101" aria-hidden="true" tabindex="-1"></a>c_hat <span class="op">=</span> fit_total.params[<span class="st">"WeekdayBed"</span>]</span>
+<span id="cb19-102"><a href="#cb19-102" aria-hidden="true" tabindex="-1"></a>cp_hat <span class="op">=</span> fit_adjusted.params[<span class="st">"WeekdayBed"</span>]</span>
+<span id="cb19-103"><a href="#cb19-103" aria-hidden="true" tabindex="-1"></a>ab_hat <span class="op">=</span> a_hat <span class="op">*</span> b_hat</span>
+<span id="cb19-104"><a href="#cb19-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-105"><a href="#cb19-105" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="st">"**6. 间接关联与总关联分解**"</span>))</span>
+<span id="cb19-106"><a href="#cb19-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-107"><a href="#cb19-107" aria-hidden="true" tabindex="-1"></a>display(Math(</span>
+<span id="cb19-108"><a href="#cb19-108" aria-hidden="true" tabindex="-1"></a>    <span class="vs">rf"</span><span class="er">\</span><span class="vs">hat a</span><span class="er">\</span><span class="vs">hat b"</span></span>
+<span id="cb19-109"><a href="#cb19-109" aria-hidden="true" tabindex="-1"></a>    <span class="vs">rf"=</span><span class="kw">(</span><span class="sc">{</span>a_hat<span class="sc">:.4f}</span><span class="kw">)</span><span class="ch">\t</span><span class="vs">imes</span><span class="kw">(</span><span class="sc">{</span>b_hat<span class="sc">:.4f}</span><span class="kw">)</span><span class="vs">"</span></span>
+<span id="cb19-110"><a href="#cb19-110" aria-hidden="true" tabindex="-1"></a>    <span class="vs">rf"=</span><span class="sc">{</span>ab_hat<span class="sc">:.4f}</span><span class="vs">"</span></span>
+<span id="cb19-111"><a href="#cb19-111" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb19-112"><a href="#cb19-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-113"><a href="#cb19-113" aria-hidden="true" tabindex="-1"></a>display(Math(</span>
+<span id="cb19-114"><a href="#cb19-114" aria-hidden="true" tabindex="-1"></a>    <span class="vs">rf"</span><span class="er">\</span><span class="vs">hat c=</span><span class="er">\</span><span class="vs">hat c'</span><span class="op">+</span><span class="er">\</span><span class="vs">hat a</span><span class="er">\</span><span class="vs">hat b"</span></span>
+<span id="cb19-115"><a href="#cb19-115" aria-hidden="true" tabindex="-1"></a>    <span class="vs">rf"=</span><span class="kw">(</span><span class="sc">{</span>cp_hat<span class="sc">:.4f}</span><span class="kw">)</span><span class="op">+</span><span class="kw">(</span><span class="sc">{</span>ab_hat<span class="sc">:.4f}</span><span class="kw">)</span><span class="vs">"</span></span>
+<span id="cb19-116"><a href="#cb19-116" aria-hidden="true" tabindex="-1"></a>    <span class="vs">rf"=</span><span class="sc">{</span>c_hat<span class="sc">:.4f}</span><span class="vs">"</span></span>
+<span id="cb19-117"><a href="#cb19-117" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>N = 253
+a = -0.6460
+b = -0.0791
+c' = -0.1018
+Indirect association (a × b) = 0.0511
+95% Monte Carlo CI = [0.0179, 0.0866]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-13-output-2.png" width="760" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><strong>4. 控制睡眠时长：路径 b 和 c′（N = 253）</strong></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math inline">\(\displaystyle \mathrm{GPA}_i=\nu_0+c'\mathrm{WeekdayBed}_i+b\,\mathrm{WeekdaySleep}_i+\varepsilon_{Y,i}\)</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math inline">\(\displaystyle \widehat{\mathrm{GPA}}_i = 6.3951 - 0.1018\,\mathrm{WeekdayBed}_i - 0.0791\,\mathrm{WeekdaySleep}_i\)</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><strong>5. 就寝时间预测睡眠时长：路径 a（N = 253）</strong></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math inline">\(\displaystyle \mathrm{WeekdaySleep}_i=\mu_0+a\,\mathrm{WeekdayBed}_i+\varepsilon_{M,i}\)</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math inline">\(\displaystyle \widehat{\mathrm{WeekdaySleep}}_i = 23.9186 - 0.6460\,\mathrm{WeekdayBed}_i\)</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><strong>6. 间接关联与总关联分解</strong></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math inline">\(\displaystyle \hat a\hat b=(-0.6460)\times(-0.0791)=0.0511\)</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math inline">\(\displaystyle \hat c=\hat c'+\hat a\hat b=(-0.1018)+(0.0511)=-0.0507\)</span></p>
+</div>
+</div>
+<p>中文报告</p>
+<p>探索性中介分析检验了工作日睡眠时长所对应的间接关联。较晚就寝与较短睡眠时长显著相关，路径 (a=-0.646)，SE = 0.058，t(251) = −11.04，p &lt; .001，95% CI [−0.761, −0.531]。控制就寝时间后，睡眠时长与 GPA 呈负关联，路径 (b=-0.079)，SE = 0.026，t(250) = −3.04，p = .003，95% CI [−0.130, −0.028]。</p>
+<p>估计间接关联为 (ab=0.051)。基于 100,000 次 Monte Carlo 模拟，95% CI 为 [0.018, 0.087]，不包含零。直接关联为 (c’=-0.102)，总关联为 (c=-0.051)。间接关联与直接关联方向相反，呈现与不一致中介或抑制模式相符的统计结果。由于数据为观察性数据，该分析不能确立因果中介机制。</p>
+<p>English report</p>
+<p>An exploratory mediation analysis examined the indirect association involving weekday sleep duration. Later bedtime was significantly associated with shorter sleep duration, path (a=-0.646), SE = 0.058, t(251) = −11.04, p &lt; .001, 95% CI [−0.761, −0.531]. Controlling for bedtime, sleep duration was negatively associated with GPA, path (b=-0.079), SE = 0.026, t(250) = −3.04, p = .003, 95% CI [−0.130, −0.028].</p>
+<p>The estimated indirect association was (ab=0.051). A 95% Monte Carlo confidence interval based on 100,000 simulations excluded zero, [0.018, 0.087]. The direct association was (c’=-0.102), whereas the total association was (c=-0.051). The opposing signs of the indirect and direct associations were consistent with an inconsistent mediation or suppression pattern. Because the data were observational, these findings do not establish a causal mediation mechanism.</p>
+</section>
+</section>
+<section id="results-and-general-discussion" class="level1">
+<h1>Results and General Discussion</h1>
+<p>中文</p>
+<p>在 253 名学生中，较晚的工作日就寝时间与较低 GPA 存在较弱的负关联。二次回归未提供支持弯曲关系的充分证据，因此无法据此识别最佳就寝时间。控制工作日睡眠时长后，就寝时间与 GPA 的负关联增强，但模型仍仅解释约 5.2% 的 GPA 方差。探索性路径分析显示，睡眠时长对应的正向间接关联与负向直接关联方向相反，呈现抑制模式。整体而言，就寝时间和睡眠时长与 GPA 的关系较为复杂，这些观察性结果不足以得出改变就寝时间或睡眠时长会导致 GPA 改变的结论。</p>
+<p>English</p>
+<p>Among 253 students, later weekday bedtime was weakly associated with lower GPA. Quadratic regression provided insufficient evidence of curvature, preventing identification of an optimal bedtime. The negative association between bedtime and GPA became stronger after adjusting for weekday sleep duration, although the model explained only approximately 5.2% of GPA variance. Exploratory path analysis identified a positive indirect association opposing the negative direct association, consistent with a suppression pattern. Overall, the associations among bedtime, sleep duration, and GPA were complex, and these observational findings do not establish that changing bedtime or sleep duration would cause changes in GPA.</p>
+<p>The exploratory path analysis did not support the simple explanation that later bedtime was associated with lower GPA through shorter sleep duration. Although later bedtime was associated with shorter sleep duration, sleep duration was negatively associated with GPA after adjustment for bedtime. The resulting positive indirect association opposed the negative adjusted bedtime association, producing a pattern consistent with statistical suppression. This pattern helps explain why the bedtime coefficient became more negative after sleep duration was included in the model.</p>
+<p>Importantly, the negative adjusted coefficient for sleep duration should not be interpreted as evidence that reducing sleep would improve academic performance. It represents a conditional association among students with the same modeled bedtime and may reflect unmeasured differences in health, schedules, or other characteristics. The present design cannot distinguish among these explanations.</p>
+</section>
+<section id="limitations-and-future-directions" class="level1">
+<h1>Limitations and Future Directions</h1>
+<p>Several limitations should be considered when interpreting the present findings. First, the analyses were observational and did not establish the temporal ordering of bedtime, sleep duration, and academic performance. Although the original study collected sleep diaries over a two-week period, the present analyses used student-level averages rather than examining changes over time <span class="citation" data-cites="onyper2012class">(<a href="#ref-onyper2012class" role="doc-biblioref">Onyper et al., 2012</a>)</span>. Consequently, the findings cannot establish that later bedtimes lead to lower GPA. Reverse causation is also possible: academic difficulties or greater academic demands may influence students’ sleep schedules.</p>
+<p>Future research could address this limitation through a longitudinal design that follows students across an academic semester or multiple semesters. For example, <span class="citation" data-cites="creswell2023nightly">Creswell et al. (<a href="#ref-creswell2023nightly" role="doc-biblioref">2023</a>)</span> found that sleep duration measured early in the academic term predicted end-of-term GPA after accounting for previous-term GPA. Building on this approach, future studies could repeatedly measure bedtime, sleep duration, and academic outcomes to examine whether earlier sleep patterns predict subsequent performance. Repeated measurements could also distinguish differences between students from changes within the same student. However, temporal precedence alone would not eliminate confounding or establish causation.</p>
+<p>Second, the present regression models included only bedtime and sleep duration. Factors such as chronotype, mental health, alcohol use, class schedules, and study habits may be associated with both sleep and academic performance. Previous research has examined several of these factors jointly, illustrating the broader context in which sleep–performance associations occur <span class="citation" data-cites="onyper2012class">(<a href="#ref-onyper2012class" role="doc-biblioref">Onyper et al., 2012</a>)</span>. Future studies should identify relevant confounders using a clearly specified theoretical model and assess prior academic achievement, rather than assuming that including more predictors necessarily improves causal inference.</p>
+<p>Third, diary-based sleep measures may be affected by inaccurate reporting, and a two-week recording period may not represent students’ sleep throughout a semester. Future research could combine sleep diaries with actigraphy over longer periods, following approaches used in previous studies <span class="citation" data-cites="okano2019sleep creswell2023nightly">(<a href="#ref-creswell2023nightly" role="doc-biblioref">Creswell et al., 2023</a>; <a href="#ref-okano2019sleep" role="doc-biblioref">Okano et al., 2019</a>)</span>. Average weekday bedtime also does not capture sleep quality, night-to-night variability, or differences between weekday and weekend schedules. Future studies could examine these dimensions separately. In particular, sleep regularity should be distinguished from social jetlag, which concerns differences in sleep timing between work or school days and free days. Previous research has associated greater social jetlag with poorer academic performance <span class="citation" data-cites="haraszti2014social">(<a href="#ref-haraszti2014social" role="doc-biblioref">Haraszti et al., 2014</a>)</span>.</p>
+<p>Fourth, the statistical findings require cautious interpretation. The models explained a relatively small proportion of GPA variance, and the nonsignificant quadratic term does not establish that the relationship is strictly linear or identify an optimal bedtime. Moreover, the exploratory mediation analysis should not be interpreted as evidence that sleep duration is a causal mechanism. Cross-sectional mediation estimates can differ substantially from the longitudinal processes they are intended to represent <span class="citation" data-cites="maxwell2007bias">(<a href="#ref-maxwell2007bias" role="doc-biblioref">Maxwell &amp; Cole, 2007</a>)</span>. Future studies could use appropriately timed repeated measurements of bedtime, sleep duration, and academic performance, while accounting for prior values and relevant confounders.</p>
+<p>The Monte Carlo confidence interval for the indirect association also relied on normal approximations for the path coefficients and an assumption of zero sampling covariance between them. Future analyses could examine robustness using participant-level bootstrap confidence intervals, heteroscedasticity-robust standard errors, and sensitivity analyses for influential observations. These procedures could assess statistical stability but would not resolve the causal limitations of the research design.</p>
+<p>Finally, quasi-experimental designs could strengthen causal inference without deliberately requiring students to restrict sleep. For example, researchers could study an institutionally introduced change in class start times. A relevant precedent is the pre–post study by <span class="citation" data-cites="dunster2018sleepmore">Dunster et al. (<a href="#ref-dunster2018sleepmore" role="doc-biblioref">2018</a>)</span>, which found that delayed school start times were associated with longer sleep and improved academic performance among high school students. However, those findings should not be assumed to generalize directly to college students.</p>
+<p>A future college study could compare changes in sleep and academic outcomes between institutions or programs that delayed class start times and comparable groups whose schedules remained unchanged. A difference-in-differences analysis could evaluate whether outcomes changed differently between these groups. Credible causal interpretation would require attention to assumptions such as parallel trends and the absence of differential concurrent changes, supported by multiple observations before and after the policy change <span class="citation" data-cites="wing2018designing">(<a href="#ref-wing2018designing" role="doc-biblioref">Wing et al., 2018</a>)</span>.</p>
+<p>Importantly, this design would primarily estimate the consequences of a scheduling policy rather than the isolated effect of bedtime. Class schedules could influence attendance, study opportunities, and other behaviors in addition to sleep. Complementary randomized studies could evaluate voluntary sleep-support interventions without assigning students to harmful sleep deprivation. Together, these approaches could clarify whether improving sleep-related conditions produces meaningful changes in academic performance.</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-alapin2000good" class="csl-entry" role="listitem">
+Alapin, I., Fichten, C. S., Libman, E., Creti, L., Bailes, S., &amp; Wright, J. (2000). How is good and poor sleep in older adults and college students related to daytime sleepiness, fatigue, and ability to concentrate? <em>Journal of Psychosomatic Research</em>, <em>49</em>(5), 381–390.
+</div>
+<div id="ref-creswell2023nightly" class="csl-entry" role="listitem">
+Creswell, J. D., Tumminia, M. J., Price, S., Sefidgar, Y., Cohen, S., Ren, Y., Brown, J., Dey, A. K., Dutcher, J. M., Villalba, D., Mankoff, J., Xu, X., Creswell, K., Doryab, A., Mattingly, S., Striegel, A., Hachen, D., Martinez, G., &amp; Lovett, M. C. (2023). Nightly sleep duration predicts grade point average in the first year of college. <em>Proceedings of the National Academy of Sciences</em>, <em>120</em>(8), e2209123120. <a href="https://doi.org/10.1073/pnas.2209123120">https://doi.org/10.1073/pnas.2209123120</a>
+</div>
+<div id="ref-dawson1997fatigue" class="csl-entry" role="listitem">
+Dawson, D., &amp; Reid, K. (1997). Fatigue, alcohol and performance impairment. <em>Nature</em>, <em>388</em>(6639), 235–235.
+</div>
+<div id="ref-diekelmann2009whats" class="csl-entry" role="listitem">
+Diekelmann, S., Wilhelm, I., &amp; Born, J. (2009). The whats and whens of sleep-dependent memory consolidation. <em>Sleep Medicine Reviews</em>, <em>13</em>(5), 309–321.
+</div>
+<div id="ref-dunster2018sleepmore" class="csl-entry" role="listitem">
+Dunster, G. P., Iglesia, L. de la, Ben-Hamo, M., Nave, C., Fleischer, J. G., Panda, S., &amp; Iglesia, H. O. de la. (2018). Sleepmore in <span>Seattle</span>: Later school start times are associated with more sleep and better performance in high school students. <em>Science Advances</em>, <em>4</em>(12), eaau6200. <a href="https://doi.org/10.1126/sciadv.aau6200">https://doi.org/10.1126/sciadv.aau6200</a>
+</div>
+<div id="ref-eliasson2010early" class="csl-entry" role="listitem">
+Eliasson, A. H., Lettieri, C. J., &amp; Eliasson, A. H. (2010). Early to bed, early to rise! Sleep habits and academic performance in college students. <em>Sleep and Breathing</em>, <em>14</em>(1), 71–75.
+</div>
+<div id="ref-fogel2007dissociable" class="csl-entry" role="listitem">
+Fogel, S. M., Smith, C. T., &amp; Cote, K. A. (2007). Dissociable learning-dependent changes in REM and non-REM sleep in declarative and procedural memory systems. <em>Behavioural Brain Research</em>, <em>180</em>(1), 48–61.
+</div>
+<div id="ref-gaultney2010prevalence" class="csl-entry" role="listitem">
+Gaultney, J. F. (2010). The prevalence of sleep disorders in college students: Impact on academic performance. <em>Journal of American College Health</em>, <em>59</em>(2), 91–97.
+</div>
+<div id="ref-gilestro2009widespread" class="csl-entry" role="listitem">
+Gilestro, G. F., Tononi, G., &amp; Cirelli, C. (2009). Widespread changes in synaptic markers as a function of sleep and wakefulness in drosophila. <em>Science</em>, <em>324</em>(5923), 109–112.
+</div>
+<div id="ref-haraszti2014social" class="csl-entry" role="listitem">
+Haraszti, R. Á., Ella, K., Gyöngyösi, N., Roenneberg, T., &amp; Káldi, K. (2014). Social jetlag negatively correlates with academic performance in undergraduates. <em>Chronobiology International</em>, <em>31</em>(5), 603–612.
+</div>
+<div id="ref-harrison2000impact" class="csl-entry" role="listitem">
+Harrison, Y., &amp; Horne, J. A. (2000). The impact of sleep deprivation on decision making: A review. <em>Journal of Experimental Psychology: Applied</em>, <em>6</em>(3), 236.
+</div>
+<div id="ref-lim2010meta" class="csl-entry" role="listitem">
+Lim, J., &amp; Dinges, D. F. (2010). A meta-analysis of the impact of short-term sleep deprivation on cognitive variables. <em>Psychological Bulletin</em>, <em>136</em>(3), 375.
+</div>
+<div id="ref-maxwell2007bias" class="csl-entry" role="listitem">
+Maxwell, S. E., &amp; Cole, D. A. (2007). Bias in cross-sectional analyses of longitudinal mediation. <em>Psychological Methods</em>, <em>12</em>(1), 23–44. <a href="https://doi.org/10.1037/1082-989X.12.1.23">https://doi.org/10.1037/1082-989X.12.1.23</a>
+</div>
+<div id="ref-okano2019sleep" class="csl-entry" role="listitem">
+Okano, K., Kaczmarzyk, J. R., Dave, N., Gabrieli, J. D. E., &amp; Grossman, J. C. (2019). Sleep quality, duration, and consistency are associated with better academic performance in college students. <em>Npj Science of Learning</em>, <em>4</em>, 16. <a href="https://doi.org/10.1038/s41539-019-0055-z">https://doi.org/10.1038/s41539-019-0055-z</a>
+</div>
+<div id="ref-onyper2012class" class="csl-entry" role="listitem">
+Onyper, S. V., Thacher, P. V., Gilbert, J. W., &amp; Gradess, S. G. (2012). Class start times, sleep, and academic performance in college: A path analysis. <em>Chronobiology International</em>, <em>29</em>(3), 318–335. <a href="https://doi.org/10.3109/07420528.2012.655868">https://doi.org/10.3109/07420528.2012.655868</a>
+</div>
+<div id="ref-orzech2011state" class="csl-entry" role="listitem">
+Orzech, K. M., Salafsky, D. B., &amp; Hamilton, L. A. (2011). The state of sleep among college students at a large public university. <em>Journal of American College Health</em>, <em>59</em>(7), 612–619.
+</div>
+<div id="ref-walker2006sleep" class="csl-entry" role="listitem">
+Walker, M. P., &amp; Stickgold, R. (2006). Sleep, memory, and plasticity. <em>Annu. Rev. Psychol.</em>, <em>57</em>(1), 139–166.
+</div>
+<div id="ref-wing2018designing" class="csl-entry" role="listitem">
+Wing, C., Simon, K., &amp; Bello-Gomez, R. A. (2018). Designing difference in difference studies: Best practices for public health policy research. <em>Annual Review of Public Health</em>, <em>39</em>, 453–469. <a href="https://doi.org/10.1146/annurev-publhealth-040617-013507">https://doi.org/10.1146/annurev-publhealth-040617-013507</a>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
