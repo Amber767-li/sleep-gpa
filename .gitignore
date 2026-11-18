@@ -46,3 +46,9 @@ env/
 .env
 .env.*
 !.env.example
+
+# Quarto intermediate notebooks
+*.quarto_ipynb
+
+# Anaconda project files
+anaconda_projects/
