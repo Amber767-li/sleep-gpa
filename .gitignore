@@ -52,3 +52,6 @@ env/
 
 # Anaconda project files
 anaconda_projects/
+
+/.quarto/
+**/*.quarto_ipynb
